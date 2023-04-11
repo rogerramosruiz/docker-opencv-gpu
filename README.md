@@ -21,6 +21,7 @@ cd docker-opencv-gpu
 ## Compile
 ### Set up
 Run setup.py
+
 Windows
 ```
 python setup.py
@@ -48,7 +49,7 @@ docker-compose build
 
 ## Compiling errors in WSL
 
-If an error occurs whilest compiling and the machine O.S is windows using WSL, it might be that WSL is RAM limited.
+If an error occurs whilst compiling and the machine O.S is windows using WSL, it might be that WSL is RAM limited.
 
 Either increase WSL RAM limit or compile single threaded
 

@@ -1,5 +1,6 @@
 import subprocess
 import re 
+import urllib.request
 
 def nvidia_smi(query = None):
     command = 'nvidia-smi'
@@ -19,8 +20,38 @@ def cuda_version():
 
 def get_graphic_card():
     # nvidia-smi --query-gpu=gpu_name --format=csv,noheader
-    return nvidia_smi('--query-gpu=gpu_name --format=csv,noheader').decode('utf-8').strip()
+    gpu = ""
+    not_allowed = ['NVIDIA', 'Laptop', 'GPU']
+    data = nvidia_smi('--query-gpu=gpu_name --format=csv,noheader').decode('utf-8').strip()
+    values = data.split(' ')
+    for i in values:
+        if i not in not_allowed:
+            gpu += f'{i} '
+    return gpu.strip()
+
+def get_compute_capability(gpu):
+    url = 'https://developer.nvidia.com/cuda-gpus'
+    with urllib.request.urlopen(url) as r:
+        data = r.read().decode('utf-8')
+    start = data.find(gpu+'<')
+    if start < 0:
+        return start
+    start += len('gpu')
+    v = ''
+    b = False
+    for i in range(start, len(data)):
+        if data[i] == '<':
+            b = True
+        if b:
+            ch = ord(data[i])
+            if ch >= ord('0') and ch <= ord('9') or data[i] == '.':
+                v += data[i]
+            if len(v) == 3:
+                break
+    return v
 
 
 if __name__ == '__main__':
-    print(get_graphic_card())
+    gpu = get_graphic_card()
+    compute_cap = get_compute_capability(gpu)
+    print(compute_cap)

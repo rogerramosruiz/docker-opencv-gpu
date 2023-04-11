@@ -1,0 +1,11 @@
+version: '3'
+services:
+  app:
+    image: opencv_gpu_compiled
+    env_file:
+      - .env
+    build:
+      context: .
+      args:
+        image: $IMAGE
+        gpu_arch: $GPU_ARCH

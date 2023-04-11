@@ -42,7 +42,7 @@ for nvida image https://hub.docker.com/r/nvidia/cuda
 run docker compose
 
 ```bash
-docker-compose up
+docker-compose build
 ```
 
 

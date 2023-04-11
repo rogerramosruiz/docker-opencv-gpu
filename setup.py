@@ -17,6 +17,10 @@ def cuda_version():
         version += '.0'
     return version
 
+def get_graphic_card():
+    # nvidia-smi --query-gpu=gpu_name --format=csv,noheader
+    return nvidia_smi('--query-gpu=gpu_name --format=csv,noheader').decode('utf-8').strip()
+
 
 if __name__ == '__main__':
-    print(cuda_version())
+    print(get_graphic_card())

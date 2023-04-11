@@ -86,7 +86,7 @@ def main():
     image = get_docker_image(cuda_v, type='devel')
     print('Docker image:', image)
     with open('.env', 'w') as f:
-        f.write(f'GPU_ARCH={compute_cap}\n')
+        f.write(f'COMPUTE_CAPABILTY={compute_cap}\n')
         f.write(f'IMAGE={image}\n')
 
 if __name__ == '__main__':

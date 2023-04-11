@@ -3,7 +3,7 @@ FROM $image
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG gpu_arch
+ARG compute_capabilty
 
 RUN apt update -y
 
@@ -31,7 +31,7 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D OPENCV_DNN_CUDA=ON  \
 -D ENABLE_FAST_MATH=1  \
 -D CUDA_FAST_MATH=1  \
--D CUDA_ARCH_BIN=$gpu_arch \
+-D CUDA_ARCH_BIN=$compute_capabilty \
 -D WITH_CUBLAS=1  \
 -D OPENCV_EXTRA_MODULES_PATH=/opencv/opencv_contrib/modules  \
 -D HAVE_opencv_python3=ON  \

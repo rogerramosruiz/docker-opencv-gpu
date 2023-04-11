@@ -8,4 +8,4 @@ services:
       context: .
       args:
         image: $IMAGE
-        gpu_arch: $GPU_ARCH
+        compute_capabilty: $COMPUTE_CAPABILTY
